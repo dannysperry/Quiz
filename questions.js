@@ -1,10 +1,18 @@
 $(document).ready(function() {
 
-     // Variable Declarations
+    ///////////////////////
+    // Variable Declarations
+    ///////////////////////
     var qCount = 0, points = 0, children = $('section').children(), l = $('.question').length, correctAnswers = ['no','osx','ruby','yes','clean'];
 
+
+    ///////////////////////
     // Functions
+    ///////////////////////
     var startAndReset = function() {
+        $('header').css({'display':'block'});    // display settings
+        $('#main').css({'display':'block'});     // set up for javascript
+        $('#noscript').css({'display':'none'});  // disabled users
         $('.content').not($('#intro')).hide();
         $('#intro').show();
         $('.radio').prop('checked', false);
@@ -47,10 +55,9 @@ $(document).ready(function() {
         $('#final').replaceWith("<p id='final'>" + points*100 + "%</p>");
     };
 
-
-
+    ///////////////////////
     // Active function calls and event handlers
-
+    ///////////////////////
     startAndReset();
 
     $(".submit").click(function(){

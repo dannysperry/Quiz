@@ -1,2 +1,6 @@
 @import url(http://reset5.googlecode.com/hg/reset.min.css);
 
+header,#main{       /*  Special style set for Javascript disabled users  */
+display:none;       /* questions.js sets these elements to display block */
+}
+
