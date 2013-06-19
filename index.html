@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danny Sperry's Quiz</title>
+    <style type="text/css" href="style.css"></style>
+    <script type=text/javascript src="jquery.js"></script>
+    <script type="text/javascript" src="questions.js"></script>
+</head>
+<body>
+<header>
+    <h1>Greeting!</h1>
+    <h2>This is a lovely quiz.</h2>
+</header>
+<div id="main">
+    <section>
+        <div class="content" id="intro">
+            <p>The following questions will determine if I'm the kind of front-end developer you are looking for. There will be a
+            grade at the end telling you how likely I am to enjoy working for your company. This quiz was built as a way for me to
+            implement new knowledge of Javascript's language, libraries, frameworks, and any features of HTML5 or CSS3 I can
+            add without making the design look like I wiped mud on your screen. If you're score is high enough, perhaps you'd
+            like to check out my source code? Perhaps you want to hire me? Either way, thanks for stopping by. Enjoy!
+            </p>
+
+            <div class="submit">start</div>
+        </div>
+
+        <div class="content question" id="question1">
+            <form>
+                <p>Do all your developers love Microsoft and all of it's products?</p>
+
+                <input id='choice1_1' type='radio' name='radio1' class='radio' value='yes' >
+                <label for='choice1_1'>Yes</label><br>
+
+                <input id='choice1_2' type='radio' name='radio1' class='radio' value='no' >
+                <label for='choice1_2'>No</label><br />
+
+                <div class="submit">Next</div>
+            </form>
+        </div>
+
+        <div class="content question" id="question2">
+            <form>
+                <p>What Operating System does your company develop on?</p>
+
+                <input id='choice2_1' type='radio' name='radio2' class='radio' value='windows' >
+                <label for='choice2_1'>Windows</label><br>
+
+                <input id='choice2_2' type='radio' name='radio2' class='radio' value='osx' >
+                <label for='choice2_2'>OSx</label><br>
+
+                <input id='choice2_3' type='radio' name='radio2' class='radio' value='linux' >
+                <label for='choice2_3'>Linux</label><br>
+
+                <div class="submit">Next</div>
+            </form>
+        </div>
+
+        <div class="content question" id="question3">
+            <form>
+                <p>What programming language do you use for the server-side?</p>
+
+                <input id='choice3_1' type='radio' name='radio3' class='radio' value='php' >
+                <label for='choice3_1'>PHP</label><br>
+
+                <input id='choice3_2' type='radio' name='radio3' class='radio' value='ruby' >
+                <label for='choice3_2'>Ruby</label><br>
+
+                <input id='choice3_3' type='radio' name='radio3' class='radio' value='python' >
+                <label for='choice3_3'>Python</label><br>
+
+                <input id='choice3_4' type='radio' name='radio3' class='radio' value='perl' >
+                <label for='choice3_4'>Perl</label><br>
+
+                <input id='choice3_5' type='radio' name='radio3' class='radio' value='node' >
+                <label for='choice3_5'>Node.js</label><br>
+
+                <div class="submit">Next</div>
+            </form>
+        </div>
+
+        <div class="content question" id="question4">
+            <form>
+                <p>Would you be willing to hire a junior front end developer?</p>
+
+                <input id='choice4_1' type='radio' name='radio4' class='radio' value='yes' >
+                <label for='choice4_1'>Yes</label><br>
+
+                <input id='choice4_2' type='radio' name='radio4' class='radio' value='no' >
+                <label for='choice4_2'>No</label><br>
+
+                <div class="submit">Next</div>
+            </form>
+        </div>
+
+        <div class="content question" id="question5">
+            <form>
+                <p>What kind of attire do your employees wear?</p>
+
+                <input id='choice5_1' type='radio' name='radio5' class='radio' value='formal' >
+                <label for='choice5_1'>Formal</label><br>
+
+                <input id='choice5_2' type='radio' name='radio5' class='radio' value='casual' >
+                <label for='choice5_2'>Casual</label><br>
+
+                <input id='choice5_3' type='radio' name='radio5' class='radio' value='clean' >
+                <label for='choice5_3'>Clean clothes will do</label><br>
+
+                <div class="submit">Finish</div>
+            </form>
+        </div>
+
+        <div class="content" id="score">
+            <p> Your final score is:</p>
+            <p id='final'></p>
+            <p id='retry'><a href='#'>Retry!</a></p>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>
+
+
