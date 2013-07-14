@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danny Sperry's Quiz</title>
+   	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" title="styles" charset="utf-8">
+   	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css" media="screen" title="styles" charset="utf-8">
+</head>
+
+<body>
+<div class="container-fluid span10 offset1">
+	<header class="row-fluid page-header">
+	    <h1 class="text-center">Will I like working for you? <small>A simple quiz</small></h1>
+	</header>
+
+	<div id="noscript">
+	    I'm sorry. This quiz is specifically designed to work with JavaScript enabled. Please enable javascript in your browser
+	    or server in order to experience the quiz I have developed.
+	</div>
+
+	<div class="row-fluid" id="main">
+	    <section>
+	        <div class="content" id="intro">
+	            <p class="lead">The following questions will determine if I'm the kind of front-end developer you are looking for. There will be a
+	                grade at the end telling you how likely I am to enjoy working for your company. This quiz was built as a way for me to
+	                implement new knowledge of JavaScript's language, libraries, frameworks, and any features of HTML5 or CSS3 I can
+	                add without making the design look like I wiped mud on your screen. If you're score is high enough, perhaps you'd
+	                like to check out my source code? Perhaps you want to hire me? Either way, thanks for stopping by. Enjoy!
+	            </p>
+
+	            <button class="btn btn-large span8 offset2 btn-success top-buffer start" type="button">Start</button>
+	        </div> <!-- .content #intro -->
+
+	        <div class="content question">	
+	        </div>
+					<script id="questionHB" type="text/x-handlebars-template">
+					{{#questions}}
+				  	<form class="row row-fluid span8 offset2" id = "question_{{cond @index 1}}"><h3 class="text-center">{{question}}</h3>
+							<div id="choices" data-toggle="buttons-radio">
+							{{#choices}}
+							<input class="btn btn-large btn-info btn-block choice" id="choice_{{cond @index 1}}" type="button" name="radio" value="{{choice}}">
+							{{/choices}}
+							</div>
+							<div class="top-buffer">
+								{{#ifCond @index ">" 0}}
+									<button class="btn btn-large span3 btn-warning previous" type="button">Back</button>
+								{{/ifCond}}
+								<button class="btn btn-large span3 btn-success pull-right next" type="button" tabindex="1">Next</button>
+							</div>
+						</form>
+				  {{/questions}}
+				</script>
+				
+	        <div class="content text-center" id="score">
+	            <p> Your final score is:</p>
+	            <p id='final'></p>
+	            <button class="btn btn-primary" id='retry' type="button">Retry!</button>
+	        </div>
+	    </section>
+
+	</div> <!-- #main -->
+</div> <!-- .container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/handlebars.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/questions2.js"></script>
+
+</body>
+</html>
+
+
