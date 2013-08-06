@@ -2,46 +2,157 @@
     /////////////////////
     //  handlebars.js  //
     /////////////////////
-   
+
 		// each question is an object with in this array, the object must have the names "question", "choices", and "correctAnswer".
     // the correctAnswer value must be the same as the one of the choices.
-    // note that the QUESTION() function automatically capitalized each of your choices, it is best to keep choices lower cased in this array
 		var allQuestions = {"questions":[
 					{
-						"question":"Do all your developers love Microsoft and all of it's products?",
+						"question":"How many horns did Triceratops have?",
 						"choices":[
-							{"choice":"Yes"},
-							{"choice":"No"}],
-						"correctAnswer":"no"
+							{"choice":"Two"},
+							{"choice":"Three"},
+							{"choice":"Four"},
+							{"choice":"Five"}],
+						"correctAnswer":"three"
 					},{
-						"question":"What Operating System does your company develop on?",
+						"question":"The name dinosaur means ‘terrible lizard’.",
 						"choices":[
-							{"choice":"Windows"},
-							{"choice":"OSx"},
-							{"choice":"Linux"}],
-						"correctAnswer":"OSx"
+							{"choice":"True"},
+							{"choice":"False"}],
+						"correctAnswer":"true"
 					},{
-						"question":"What programming language do you use for the server-side?",
+						"question":"Which came first, the Jurassic or Cretaceous Period?",
 						"choices":[
-							{"choice":"PHP"},
-							{"choice":"Ruby"},
-							{"choice":"Perl"},
-							{"choice":"Python"},
-							{"choice":"Node.js"}],
-						"correctAnswer":"ruby"
+							{"choice":"Jurassic"},
+							{"choice":"Cretaceous"},
+							{"choice":"Both aren't prehistoric periods"},
+							{"choice":"Only one of those is a prehistoric period"}],
+						"correctAnswer":"Jurassic"
 					},{
-						"question":"Would you be willing to hire a junior/entry level front end developer?",
+						"question":"Was Diplodocus a carnivore or herbivore?",
 						"choices":[
-							{"choice":"Yes"},
-							{"choice":"No"}],
-						"correctAnswer":"yes"
+							{"choice":"Carnivore"},
+							{"choice":"Herbivore"},
+							{"choice":"Omnivore"}],
+						"correctAnswer":"herbivore"
 					},{
-						"question":"What kind of attire do your employees wear?",
+						"question":"Tyrannosaurus rex was the biggest dinosaur ever.",
 						"choices":[
-						{"choice":"Formal"},
-						{"choice":"Casual"},
-						{"choice":"Clean clothes will do"}],
-						"correctAnswer":"casual"
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"false"
+					},{
+						"question":"Iguanodon was one of three dinosaurs that inspired the appearance of Godzilla.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"True"
+					},
+					{
+						"question":"Did Theropods such as Allosaurus and Carnotaurus move on two legs or four?",
+						"choices":[
+						{"choice":"Two"},
+						{"choice":"Four"}],
+						"correctAnswer":"two"
+					},
+					{
+						"question":"Apatosaurus is also widely known by what other name?",
+						"choices":[
+						{"choice":"Triceratops"},
+						{"choice":"Brontosaurus"},
+						{"choice":"It's only knows as apatosaurus"}],
+						"correctAnswer":"brontosaurus"
+					},
+					{
+						"question":"Most dinosaurs became extinct during an event that occurred 500 years ago.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"false"
+					},
+					{
+						"question":"What type of dinosaur features on the logo of the Toronto based NBA basketball team?",
+						"choices":[
+						{"choice":"T-Rex"},
+						{"choice":"Raptor"},
+						{"choice":"Pterodactyl"}],
+						"correctAnswer":"raptor"
+					},
+					{
+						"question":"Dinosaur fossils have been found on every continent of Earth.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"true"
+					},
+					{
+						"question":"What dinosaur themed book was turned into a blockbuster movie in 1993?",
+						"choices":[
+						{"choice":"Dinosaurs"},
+						{"choice":"Jurassic Park"}],
+						"correctAnswer":"jurassic park"
+					},
+					{
+						"question":"Ankylosaurus featured hug plates of bone that acted as body armor.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"true"
+					},
+					{
+						"question":"Did Sauropods such as Brachiosaurus and Diplodocus move on two legs or four?",
+						"choices":[
+						{"choice":"Two"},
+						{"choice":"Four"},
+						{"choice":"Sauropods swim"}],
+						"correctAnswer":"four"
+					},
+					{
+						"question":"Pentaceratops was the first dinosaur to be officially named.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"false"
+					},
+					{
+						"question":"Which came first, the Jurassic or Triassic Period?",
+						"choices":[
+						{"choice":"Jarrasic"},
+						{"choice":"Triassic"},
+						{"choice":"Both aren't prehistoric periods"},
+						{"choice":"Only one of those is a prehistoric period"}],
+						"correctAnswer":"triassic"
+					},
+					{
+						"question":"The US state of Colorado lists the Allosaurus as its state dinosaur.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"false"
+					},
+					{
+						"question":"What weighed more, a fully grown Spinosaurus or Deinonychus?",
+						"choices":[
+						{"choice":"Spinosaurus"},
+						{"choice":"Deinonychus"},
+						{"choice":"Both aren't dinosaurs"},
+						{"choice":"One isn't a dinosaur"}],
+						"correctAnswer":"spinosaurus"
+					},
+					{
+						"question":"A person who studies fossils and prehistoric life such as dinosaurs is known as a what?",
+						"choices":[
+						{"choice":"Paleontologist"},
+						{"choice":"Philanthropist"},
+						{"choice":"Archeologist"}],
+						"correctAnswer":"paleontologist"
+					},
+					{
+						"question":"Birds evolved from dinosaurs.",
+						"choices":[
+						{"choice":"True"},
+						{"choice":"False"}],
+						"correctAnswer":"true"
 					}
     		]};
 
@@ -116,10 +227,6 @@
     //  functions  //
     /////////////////
 
-		// set up capitalization on strings
-    String.prototype.capitalize = function() {
-            return this.charAt(0).toUpperCase() + this.slice(1);
-        };
 
 		// set up function for beginning of page and page reset		
     var set = function() {
@@ -135,11 +242,17 @@
         qCount = 0;
         points = 0;
         correct = [];
+				$('.active').removeClass('active');
     };
 		
 		//////////////////////////////////
-		//  old code before handlebars  //
+		//  old code before handlebars.js  //
 		////////////////////////////////// 		
+    // 
+		// set up capitalization on strings
+    // String.prototype.capitalize = function() {
+    //         return this.charAt(0).toUpperCase() + this.slice(1);
+    //     };
     // 
     // var questions = function() {
     //     // clear all, if any, questions within .QUESTION
@@ -185,7 +298,7 @@
         });
         // get percentage of correct answers divided by total questions
         points = (points/l)*100;
-        return points;
+        return points.toFixed(2);
     };
 
     // fade out #INTRO and fade in first question
@@ -272,6 +385,7 @@ $(function(){
 
     $('#retry').click(function(){
         set();
+				$('.start').trigger("click");
     });
 		
     // .on() is used for dynamically created links that were created after the document and scripts loaded
