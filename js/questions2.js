@@ -1,161 +1,3 @@
-		
-    /////////////////////
-    //  handlebars.js  //
-    /////////////////////
-
-		// each question is an object with in this array, the object must have the names "question", "choices", and "correctAnswer".
-    // the correctAnswer value must be the same as the one of the choices.
-		var allQuestions = {"questions":[
-					{
-						"question":"How many horns did Triceratops have?",
-						"choices":[
-							{"choice":"Two"},
-							{"choice":"Three"},
-							{"choice":"Four"},
-							{"choice":"Five"}],
-						"correctAnswer":"three"
-					},{
-						"question":"The name dinosaur means ‘terrible lizard’.",
-						"choices":[
-							{"choice":"True"},
-							{"choice":"False"}],
-						"correctAnswer":"true"
-					},{
-						"question":"Which came first, the Jurassic or Cretaceous Period?",
-						"choices":[
-							{"choice":"Jurassic"},
-							{"choice":"Cretaceous"},
-							{"choice":"Both aren't prehistoric periods"},
-							{"choice":"Only one of those is a prehistoric period"}],
-						"correctAnswer":"Jurassic"
-					},{
-						"question":"Was Diplodocus a carnivore or herbivore?",
-						"choices":[
-							{"choice":"Carnivore"},
-							{"choice":"Herbivore"},
-							{"choice":"Omnivore"}],
-						"correctAnswer":"herbivore"
-					},{
-						"question":"Tyrannosaurus rex was the biggest dinosaur ever.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"false"
-					},{
-						"question":"Iguanodon was one of three dinosaurs that inspired the appearance of Godzilla.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"True"
-					},
-					{
-						"question":"Did Theropods such as Allosaurus and Carnotaurus move on two legs or four?",
-						"choices":[
-						{"choice":"Two"},
-						{"choice":"Four"}],
-						"correctAnswer":"two"
-					},
-					{
-						"question":"Apatosaurus is also widely known by what other name?",
-						"choices":[
-						{"choice":"Triceratops"},
-						{"choice":"Brontosaurus"},
-						{"choice":"It's only knows as apatosaurus"}],
-						"correctAnswer":"brontosaurus"
-					},
-					{
-						"question":"Most dinosaurs became extinct during an event that occurred 500 years ago.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"false"
-					},
-					{
-						"question":"What type of dinosaur features on the logo of the Toronto based NBA basketball team?",
-						"choices":[
-						{"choice":"T-Rex"},
-						{"choice":"Raptor"},
-						{"choice":"Pterodactyl"}],
-						"correctAnswer":"raptor"
-					},
-					{
-						"question":"Dinosaur fossils have been found on every continent of Earth.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"true"
-					},
-					{
-						"question":"What dinosaur themed book was turned into a blockbuster movie in 1993?",
-						"choices":[
-						{"choice":"Dinosaurs"},
-						{"choice":"Jurassic Park"}],
-						"correctAnswer":"jurassic park"
-					},
-					{
-						"question":"Ankylosaurus featured hug plates of bone that acted as body armor.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"true"
-					},
-					{
-						"question":"Did Sauropods such as Brachiosaurus and Diplodocus move on two legs or four?",
-						"choices":[
-						{"choice":"Two"},
-						{"choice":"Four"},
-						{"choice":"Sauropods swim"}],
-						"correctAnswer":"four"
-					},
-					{
-						"question":"Pentaceratops was the first dinosaur to be officially named.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"false"
-					},
-					{
-						"question":"Which came first, the Jurassic or Triassic Period?",
-						"choices":[
-						{"choice":"Jarrasic"},
-						{"choice":"Triassic"},
-						{"choice":"Both aren't prehistoric periods"},
-						{"choice":"Only one of those is a prehistoric period"}],
-						"correctAnswer":"triassic"
-					},
-					{
-						"question":"The US state of Colorado lists the Allosaurus as its state dinosaur.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"false"
-					},
-					{
-						"question":"What weighed more, a fully grown Spinosaurus or Deinonychus?",
-						"choices":[
-						{"choice":"Spinosaurus"},
-						{"choice":"Deinonychus"},
-						{"choice":"Both aren't dinosaurs"},
-						{"choice":"One isn't a dinosaur"}],
-						"correctAnswer":"spinosaurus"
-					},
-					{
-						"question":"A person who studies fossils and prehistoric life such as dinosaurs is known as a what?",
-						"choices":[
-						{"choice":"Paleontologist"},
-						{"choice":"Philanthropist"},
-						{"choice":"Archeologist"}],
-						"correctAnswer":"paleontologist"
-					},
-					{
-						"question":"Birds evolved from dinosaurs.",
-						"choices":[
-						{"choice":"True"},
-						{"choice":"False"}],
-						"correctAnswer":"true"
-					}
-    		]};
-
 			//////////////////////////
 	    //  Handlebars helpers  //
 	    //////////////////////////	
@@ -219,6 +61,20 @@
     /////////////////
     //  variables  //
     /////////////////
+		
+		var allQuestions = (function() {
+			var json;
+			$.ajax({
+				'async': false,
+				'global': false,
+				'url': "js/questions.json",
+				'dataType': "json",
+				'success': function(data){
+					json = data;
+				}
+			}); 
+			return json;
+		})();
 			
     var qCount = 0, points = 0, l = allQuestions.questions.length, correct = [];
 
@@ -242,6 +98,7 @@
         qCount = 0;
         points = 0;
         correct = [];
+				// reset previously answered questions
 				$('.active').removeClass('active');
     };
 		
@@ -358,6 +215,7 @@
                 forward(i);
             }
         	} else {
+						// change next button to red button if answer hasn't been selected
 						nextButton.removeClass('btn-success').addClass('btn-danger');
 					}
 				}
@@ -370,26 +228,22 @@
 
 $(function(){
 		
+		// change the next button to the correct green
 		$('.question').on("click",".choice", function(){
 			var nextButton = $('#question_' + qCount + ' .next');
 			if (nextButton.hasClass('btn-danger')){
 				nextButton.removeClass('btn-danger').addClass('btn-success');
 			}
 		})
-		
-
-
     $('.start').click(function(){
         next(qCount);
     });
-
     $('#retry').click(function(){
         set();
 				$('.start').trigger("click");
     });
 		
     // .on() is used for dynamically created links that were created after the document and scripts loaded
-
 		$('.question').on("click",".next",function() {
         next(qCount);
         answer(qCount);
@@ -409,7 +263,7 @@ $(function(){
 
 		set();
 
-    // flash a highlight on the correct answer if use presses "c" on keyboard
+    // flash a highlight on the correct answer if user presses "c" on keyboard
     $(document).keypress(function(e) {
         // if letter "c" is pressed
         if(e.which === 99) {
@@ -433,6 +287,7 @@ $(function(){
         }
     });
 
+		// use the right arrow key to click the next button
 		$(document).keydown(function(e) {
 			if(e.keyCode === 39) {
 				$.each(allQuestions.questions, function(i) {
@@ -443,6 +298,7 @@ $(function(){
 			}
 		})
 		
+		// use the left arrow key to click the previous button
 		$(document).keydown(function(e) {
 			if(e.keyCode === 37) {
 				$.each(allQuestions.questions, function(i) {
