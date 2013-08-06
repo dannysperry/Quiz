@@ -433,4 +433,24 @@ $(function(){
         }
     });
 
+		$(document).keydown(function(e) {
+			if(e.keyCode === 39) {
+				$.each(allQuestions.questions, function(i) {
+					if ($('#question_' + (i+1)).is(':visible')) {
+					    	$('#question_' + (i+1) + ' .next').trigger("click");
+					}					
+				})
+			}
+		})
+		
+		$(document).keydown(function(e) {
+			if(e.keyCode === 37) {
+				$.each(allQuestions.questions, function(i) {
+					if ($('#question_' + (i+1)).is(':visible')) {
+					    	$('#question_' + (i+1) + ' .previous').trigger("click");
+					}					
+				})
+			}
+		})
+
 });
